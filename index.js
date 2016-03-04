@@ -13,5 +13,5 @@ server.use(function * (next) {
 });
 
 server.listen(port, function() {
-  console.log('server listening port ' + port);
+  console.log('server listening port' + port);
 });
