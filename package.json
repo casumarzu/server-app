@@ -41,6 +41,7 @@
   ],
   "license": "MIT",
   "devDependencies": {
+    "koa-static": "^2.0.0",
     "nodemon": "^1.9.1"
   }
 }

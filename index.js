@@ -1,5 +1,5 @@
 const koa = require('koa');
-const serve = require('koa-static-folder');
+const serve = require('koa-static');
 const router = require('koa-route');
 const vhost = require('koa-vhost');
 const path = require('path');
@@ -95,9 +95,9 @@ server3.use(router.get('/bar', function* () {
 
 app.use(
   vhost([
-    { host: 's1.example.com', app: server1 },
-    { host: 's2.example.com', app: server2 },
-    { host: 's3.example.com', app: server3 },
+    { host: 's1.casumarzu.com', app: server1 },
+    { host: 's2.casumarzu.com', app: server2 },
+    { host: 's3.casumarzu.com', app: server3 },
   ])
 );
 
