@@ -1,5 +1,5 @@
-// var express = require('express');
-// var app = express();
+// const express = require('express');
+// const app = express();
 //
 // app.set('port', (process.env.PORT || 5000));
 //
@@ -17,21 +17,40 @@
 //   console.log('Node app is running on port', app.get('port'));
 // });
 
+const koa = require('koa');
+const serve = require('koa-static-folder');
+const router = require('koa-route');
+const vhost = require('koa-vhost');
+const path = require('path');
+const _ = require('lodash');
+const port = process.env.PORT || 5000;
 
-var koa = require('koa');
-var router = require('koa-route');
-var vhost = require('koa-vhost');
-var Jade = require('koa-jade');
-var path = require('path');
-var _ = require('lodash');
-var port = process.env.PORT || 5000;
 
-var app = koa();
+const app = koa();
+
+const Jade = require('koa-jade');
+const jade = new Jade({
+  viewPath: path.join(__dirname, 'views'),
+  debug: true,
+  pretty: true,
+  compileDebug: true,
+  // basedir: 'path/for/jade/extends',
+  // helperPath: [
+  //   'path/to/jade/helpers',
+  //   { random: 'path/to/lib/random.js' },
+  //   { _: require('lodash') }
+  // ],
+  app: app // equals to jade.use(app) and app.use(jade.middleware)
+})
+
+app.use(serve(path.join(__dirname, 'public')));
+
 
 app.use(function * (next) {
-  this.body = 'default Koa server';
+  this.render('index');
+  // yield this.render('index.jade');
 });
 
 app.listen(port, function() {
-  console.log('server listening port' + port);
+  console.log('server listening port: ' + port);
 });

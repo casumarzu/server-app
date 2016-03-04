@@ -4,7 +4,7 @@
   "description": "koa app",
   "main": "index.js",
   "scripts": {
-    "start": "node --harmony index.js",
+    "start": "nodemon --harmony index.js",
     "deploy": "git push heroku master && heroku ps:scale web=1"
   },
   "dependencies": {
@@ -19,6 +19,8 @@
     "koa-jade": "^2.1.0",
     "koa-route": "^2.4.2",
     "koa-vhost": "^0.5.0",
+    "koa-jade-render": "^1.0.0",
+    "koa-static-folder": "^0.1.6",
     "path": "^0.12.7",
     "pg": "^4.5.1",
     "vhost": "^3.0.2",
@@ -39,6 +41,6 @@
   ],
   "license": "MIT",
   "devDependencies": {
-    "ejs": "^2.3.4"
+    "nodemon": "^1.9.1"
   }
 }
