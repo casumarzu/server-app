@@ -4,36 +4,40 @@
   "description": "koa app",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon --harmony index.js",
+    "start": "nodemon --exec babel-node --presets es2015,stage-0 index",
     "deploy": "git push heroku && heroku ps:scale web=1"
   },
   "dependencies": {
+    "babel": "^6.5.2",
+    "babel-cli": "^6.7.7",
+    "babel-core": "^6.5.2",
+    "babel-preset-es2015": "^6.6.0",
+    "babel-preset-stage-0": "^6.5.0",
+    "babel-register": "^6.5.2",
     "ejs": "^2.3.3",
     "express": "4.13.3",
-    "babel": "^6.5.2",
-    "babel-core": "^6.5.2",
-    "babel-preset-es2015": "^6.5.0",
-    "babel-register": "^6.5.2",
+    "harmony": "0.0.1",
     "jade": "^1.11.0",
     "koa": "^1.1.2",
     "koa-jade": "^2.1.0",
-    "koa-route": "^2.4.2",
-    "koa-vhost": "^0.5.0",
     "koa-jade-render": "^1.0.0",
+    "koa-route": "^2.4.2",
     "koa-static": "^2.0.0",
     "koa-static-folder": "^0.1.6",
+    "koa-vhost": "^0.5.0",
+    "lodash": "^4.5.1",
+    "mocha": "^2.4.5",
+    "nodemon": "^1.9.1",
     "path": "^0.12.7",
     "pg": "^4.5.1",
-    "vhost": "^3.0.2",
-    "harmony": "0.0.1",
-    "lodash": "^4.5.1"
+    "vhost": "^3.0.2"
   },
   "engines": {
     "node": "0.12.7"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/heroku/node-js-getting-started"
+    "url": "https://github.com/casumarzu/server-app"
   },
   "keywords": [
     "node",
@@ -41,8 +45,5 @@
     "koa"
   ],
   "license": "MIT",
-  "devDependencies": {
-    "babel-cli": "^6.6.4",
-    "nodemon": "^1.9.1"
-  }
+  "devDependencies": {}
 }
