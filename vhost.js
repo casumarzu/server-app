@@ -1,3 +1,4 @@
+// import vhost from 'koa-vhost'
 // // server 1
 // var server1 = koa();
 // server1.use(jade.middleware);

@@ -1,0 +1,34 @@
+ratio = -1%
+.jumbotron
+  background #532F8C + ratio
+  color white
+  padding-bottom 80px
+  .btn-primary
+    background #845ac7 + ratio
+    border-color #845ac7 + ratio
+    &:hover
+      background #7646c1 + ratio
+  p
+    color #d9ccee
+    max-width 75%
+    margin 1em auto 2em
+  .lang-logo
+    display block
+    background #B01302 + ratio
+    border-radius 50%
+    overflow hidden
+    width 100px
+    height 100px
+    margin auto
+    border 2px solid white
+    img
+      max-width 100%
+
+.navbar
+  & + .jumbotron
+    margin-top -20px
+
+.alert-info
+  color #31708f + ratio
+  background-color #d9edf7 + ratio
+  border-color #bce8f1 + ratio

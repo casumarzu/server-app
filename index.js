@@ -1,30 +1,33 @@
 import koa from 'koa'
 import serve from 'koa-static'
 import router from 'koa-route'
-import vhost from 'koa-vhost'
 import path from 'path'
 import _ from 'lodash'
+import Jade  from 'koa-jade'
+import stylus  from 'koa-stylus'
 
-const port = process.env.PORT || 5000
+const port = process.env.PORT || 1337
 
 const app = koa()
 
-const Jade = require('koa-jade')
 const jade = new Jade({
   viewPath: path.join(__dirname, 'views'),
   debug: true,
   pretty: true,
-  compileDebug: true,
-  // basedir: 'path/for/jade/extends',
-  // helperPath: [
-  //   'path/to/jade/helpers',
-  //   { random: 'path/to/lib/random.js' },
-  //   { _: require('lodash') }
-  // ],
-  // app: app // equals to jade.use(app) and app.use(jade.middleware)
+  compileDebug: true
 })
 
 app.use(jade.middleware)
+
+app.use(stylus('./public'))
+
+// app.use(stylus.middleware({
+//   src: __dirname + '/public',
+//   compile: function (str, path) {
+//     return stylus(str).set('filename', path).use(nib())
+//   }
+// }))
+
 app.use(serve(path.join(__dirname, 'public')))
 
 app.use(router.get('/', function* () {
