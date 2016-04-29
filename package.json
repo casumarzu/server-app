@@ -6,7 +6,7 @@
   "scripts": {
     "start": "npm run dev",
     "dev": "nodemon --exec babel-node --presets es2015,stage-0 index",
-    "prod": "node --exec babel-node --presets es2015,stage-0 index",
+    "prod": "nodemon --exec babel-node --presets es2015,stage-0 index",
     "deploy": "git push heroku master && heroku ps:scale web=1"
   },
   "dependencies": {
