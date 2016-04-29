@@ -3,43 +3,49 @@ import serve from 'koa-static'
 import router from 'koa-route'
 import path from 'path'
 import _ from 'lodash'
-import Jade  from 'koa-jade'
-import stylus  from 'koa-stylus'
+import pug from 'pug'
+import stylus  from 'stylus'
 
 const port = process.env.PORT || 1337
 
 const app = koa()
 
-const jade = new Jade({
-  viewPath: path.join(__dirname, 'views'),
-  debug: true,
-  pretty: true,
-  compileDebug: true
-})
+function stylusMiddleware(options){
+  var middleware = stylus.middleware(options);
 
-app.use(jade.middleware)
+  function compile(req, res) {
+    return function(callback) {
+      middleware(req, res, callback)
+    }
+  }
 
-app.use(stylus('./public'))
+  return function*(next) {
+    yield compile(this.req, this.res)
+    yield next;
+  }
+}
 
-// app.use(stylus.middleware({
-//   src: __dirname + '/public',
-//   compile: function (str, path) {
-//     return stylus(str).set('filename', path).use(nib())
-//   }
-// }))
+app.use(
+  stylusMiddleware(
+    path.join(__dirname, 'public')
+  )
+)
+
+function pugRender(fileName) {
+  let file = path.join(__dirname, 'views', `${fileName}.pug`)
+  let str = require('fs').readFileSync(file, 'utf8')
+  let fn = pug.compile(str, { filename: file, pretty: true })
+  return fn()
+}
 
 app.use(serve(path.join(__dirname, 'public')))
 
 app.use(router.get('/', function* () {
-  this.render('index');
+  this.body = pugRender('index')
 }));
 
 app.use(router.get('/foo', function* () {
   this.body = 'foo';
-}));
-
-app.use(router.get('/bar', function* () {
-  this.body = 'bar';
 }));
 
 app.listen(port, function() {

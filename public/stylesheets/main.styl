@@ -1,13 +1,15 @@
-ratio = -1%
+ratio = 0%
+c-main = #532F8C + 50%
+c-alert = #31708f + 20%
 .jumbotron
-  background #532F8C + ratio
+  background c-main + ratio
   color white
   padding-bottom 80px
   .btn-primary
-    background #845ac7 + ratio
-    border-color #845ac7 + ratio
+    background c-main + 10% + ratio
+    border-color c-main + 10% + ratio
     &:hover
-      background #7646c1 + ratio
+      background c-main + 10% + ratio
   p
     color #d9ccee
     max-width 75%
@@ -29,6 +31,6 @@ ratio = -1%
     margin-top -20px
 
 .alert-info
-  color #31708f + ratio
-  background-color #d9edf7 + ratio
-  border-color #bce8f1 + ratio
+  color c-alert + ratio
+  background-color c-alert + 80% + ratio
+  border-color c-alert + 80% + ratio

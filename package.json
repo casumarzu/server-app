@@ -4,7 +4,9 @@
   "description": "koa app",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon --exec babel-node --presets es2015,stage-0 index",
+    "start": "npm run dev",
+    "dev": "nodemon --exec babel-node --presets es2015,stage-0 index",
+    "prod": "node --exec babel-node --presets es2015,stage-0 index",
     "deploy": "git push heroku && heroku ps:scale web=1"
   },
   "dependencies": {
@@ -19,10 +21,7 @@
     "eslint": "^2.8.0",
     "express": "4.13.3",
     "harmony": "0.0.1",
-    "jade": "^1.11.0",
     "koa": "^1.1.2",
-    "koa-jade": "^2.1.0",
-    "koa-jade-render": "^1.0.0",
     "koa-route": "^2.4.2",
     "koa-static": "^2.0.0",
     "koa-static-folder": "^0.1.6",
@@ -30,9 +29,11 @@
     "koa-vhost": "^0.5.0",
     "lodash": "^4.5.1",
     "mocha": "^2.4.5",
+    "node-stylus-require": "^1.1.0",
     "nodemon": "^1.9.1",
     "path": "^0.12.7",
     "pg": "^4.5.1",
+    "pug": "^2.0.0-alpha6",
     "stylus": "^0.54.5",
     "vhost": "^3.0.2"
   },
